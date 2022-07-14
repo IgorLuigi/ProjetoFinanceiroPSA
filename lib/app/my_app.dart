@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/view/lista_despesas.dart';
+import 'package:flutter_application_1/app/view/lista_receitas.dart';
 import '../app/view/home.dart';
 
 class MyApp extends StatelessWidget {
   static const HOME = '/';
-  static const RECEITA_LIST = 'receita-widget-list';
-  static const DESPESA_LIST = 'despesa-widget-list';
+  static const LISTA_RECEITAS = '/listaReceitas';
+  static const LISTA_DESPESAS = '/listaDespesas';
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,9 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         HOME: (context) => const Home(),
-        //RECEITA_FORM: (context) => ReceitaWidgetForm(),
-        //RECEITA_LIST: (context) => ReceitaWidgetList(),
+        LISTA_RECEITAS: (context) => ListaReceitas(),
+        LISTA_DESPESAS: (context) => ListaDespesas(),
+
         // DESPESA_FORM: (context) => DespesaWidgetForm(),
         //DESPESA_LIST: (context) => DespesaWidgetList(),
         //RECEITA_DETAILS: (context) => ReceitaDetails(),

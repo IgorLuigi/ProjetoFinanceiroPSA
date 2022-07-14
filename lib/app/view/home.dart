@@ -56,19 +56,22 @@ class _HomeState extends State<Home> {
                 ),
                 elevation: 5,
                 margin: EdgeInsets.all(10),
-                child: ListTile(
-                    title: const Text('Receitas'),
-                    trailing: Container(
-                        width: width / 3.9,
-                        child: Row(children: const [
-                          Text(
-                            "R\$ 40,00",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: Colors.green),
-                          ),
-                        ]))),
+                child: InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/listaReceitas'),
+                  child: ListTile(
+                      title: const Text('Receitas'),
+                      trailing: Container(
+                          width: width / 3.9,
+                          child: Row(children: const [
+                            Text(
+                              "R\$ 40,00",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  color: Colors.green),
+                            ),
+                          ]))),
+                ),
               ),
               Card(
                 shape: RoundedRectangleBorder(
@@ -76,19 +79,22 @@ class _HomeState extends State<Home> {
                 ),
                 elevation: 5,
                 margin: EdgeInsets.all(10),
-                child: ListTile(
-                    title: const Text('Despesas'),
-                    trailing: Container(
-                        width: width / 3.9,
-                        child: Row(children: const [
-                          Text(
-                            "R\$ 15,00",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color: Colors.red),
-                          ),
-                        ]))),
+                child: InkWell(
+                  onTap: () => Navigator.pushNamed(context, '/listaDespesas'),
+                  child: ListTile(
+                      title: const Text('Despesas'),
+                      trailing: Container(
+                          width: width / 3.9,
+                          child: Row(children: const [
+                            Text(
+                              "R\$ 15,00",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  color: Colors.red),
+                            ),
+                          ]))),
+                ),
               ),
             ],
           ),
