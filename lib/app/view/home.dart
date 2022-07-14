@@ -17,11 +17,10 @@ class _HomeState extends State<Home> {
         var width = constraints.biggest.width;
 
         return Scaffold(
-          backgroundColor: const Color.fromRGBO(139, 0, 139, 0.8),
+          backgroundColor: const Color.fromRGBO(255, 255, 255, 0.9),
           appBar: AppBar(
-            //backgroundColor: Colors.purpleAccent,
-            backgroundColor: const Color.fromRGBO(139, 0, 139, 0.8),
-            title: const Text('App de Finanças'),
+            backgroundColor: Colors.black,
+            title: const Text('Finance'),
             // actions: [
             //   IconButton(
             //     icon: Icon(Icons.add_circle_rounded),
@@ -42,9 +41,8 @@ class _HomeState extends State<Home> {
             children: [
               const Center(
                 child: Text(
-                  'Suas Finanças',
-                  style: TextStyle(
-                      fontSize: 30, backgroundColor: Colors.purpleAccent),
+                  'Saldo',
+                  style: TextStyle(fontSize: 30),
                 ),
               ),
               Card(
