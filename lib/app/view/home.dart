@@ -26,15 +26,29 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(60),
             children: [
               const Center(),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+              SizedBox(
+                height: 100,
+                width: width,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 5,
+                  margin: EdgeInsets.all(10),
+                  child: ListTile(
+                      title: const Text('Saldo Atual'),
+                      trailing: Container(
+                          width: width / 3.9,
+                          child: Row(children: const [
+                            Text(
+                              "R\$ 25,00",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 25,
+                                  color: Colors.black),
+                            ),
+                          ]))),
                 ),
-                elevation: 5,
-                margin: EdgeInsets.all(10),
-                child: ListTile(
-                    title: const Text('Saldo Atual:'),
-                    trailing: Container(width: width / 6)),
               ),
               Card(
                 shape: RoundedRectangleBorder(
@@ -43,17 +57,17 @@ class _HomeState extends State<Home> {
                 elevation: 5,
                 margin: EdgeInsets.all(10),
                 child: ListTile(
-                    title: const Text('Adicionar Receita:'),
+                    title: const Text('Receitas'),
                     trailing: Container(
-                        width: width / 8,
-                        child: Row(children: [
-                          IconButton(
-                              color: Color.fromRGBO(30, 30, 30, 0.6),
-                              icon: const Icon(Icons.add_circle_rounded),
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(MyApp.RECEITA_LIST);
-                              })
+                        width: width / 3.9,
+                        child: Row(children: const [
+                          Text(
+                            "R\$ 40,00",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Colors.green),
+                          ),
                         ]))),
               ),
               Card(
@@ -63,17 +77,17 @@ class _HomeState extends State<Home> {
                 elevation: 5,
                 margin: EdgeInsets.all(10),
                 child: ListTile(
-                    title: const Text('Adicionar Despesa:'),
+                    title: const Text('Despesas'),
                     trailing: Container(
-                        width: width / 8,
-                        child: Row(children: [
-                          IconButton(
-                              color: Color.fromRGBO(30, 30, 30, 0.6),
-                              icon: const Icon(Icons.remove_circle_rounded),
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed(MyApp.DESPESA_LIST);
-                              })
+                        width: width / 3.9,
+                        child: Row(children: const [
+                          Text(
+                            "R\$ 15,00",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                                color: Colors.red),
+                          ),
                         ]))),
               ),
             ],
