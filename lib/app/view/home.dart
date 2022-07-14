@@ -20,39 +20,35 @@ class _HomeState extends State<Home> {
           backgroundColor: const Color.fromRGBO(255, 255, 255, 0.9),
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: const Text('Finance'),
-            // actions: [
-            //   IconButton(
-            //     icon: Icon(Icons.add_circle_rounded),
-            //     onPressed: (){
-            //       Navigator.of(context).pushNamed(MyApp.RECEITA_LIST);
-            //     }
-            //   ),
-            //   IconButton(
-            //     icon: Icon(Icons.remove_circle_rounded),
-            //     onPressed: (){
-            //       Navigator.of(context).pushNamed(MyApp.DESPESA_LIST);
-            //     }
-            //   )
-            // ],
+            title: const Text('Finance App'),
           ),
           body: ListView(
             padding: const EdgeInsets.all(60),
             children: [
-              const Center(
-                child: Text(
-                  'Saldo',
-                  style: TextStyle(fontSize: 30),
+              const Center(),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
+                elevation: 5,
+                margin: EdgeInsets.all(10),
+                child: ListTile(
+                    title: const Text('Saldo Atual:'),
+                    trailing: Container(width: width / 6)),
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 5,
+                margin: EdgeInsets.all(10),
                 child: ListTile(
-                    title: const Text('Receita:'),
+                    title: const Text('Adicionar Receita:'),
                     trailing: Container(
-                        width: width / 6,
+                        width: width / 8,
                         child: Row(children: [
                           IconButton(
-                              color: Colors.purpleAccent,
+                              color: Color.fromRGBO(30, 30, 30, 0.6),
                               icon: const Icon(Icons.add_circle_rounded),
                               onPressed: () {
                                 Navigator.of(context)
@@ -61,13 +57,18 @@ class _HomeState extends State<Home> {
                         ]))),
               ),
               Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 5,
+                margin: EdgeInsets.all(10),
                 child: ListTile(
-                    title: const Text('Despesa:'),
+                    title: const Text('Adicionar Despesa:'),
                     trailing: Container(
-                        width: width / 6,
+                        width: width / 8,
                         child: Row(children: [
                           IconButton(
-                              color: Colors.purpleAccent,
+                              color: Color.fromRGBO(30, 30, 30, 0.6),
                               icon: const Icon(Icons.remove_circle_rounded),
                               onPressed: () {
                                 Navigator.of(context)
