@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/view/lista_despesas.dart';
-import 'package:flutter_application_1/app/view/lista_receitas.dart';
-import '../app/view/home.dart';
+import 'package:flutter_application_1/app/view/despesa/lista_despesas.dart';
+import 'package:flutter_application_1/app/view/receita/lista_receitas.dart';
+import '../app/view/home/home.dart';
 
 class MyApp extends StatelessWidget {
   static const HOME = '/';
