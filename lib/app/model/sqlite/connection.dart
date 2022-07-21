@@ -5,9 +5,9 @@ import 'package:sqflite/sqflite.dart';
 class Connection {
   static Database? _db;
 
-  static Future<Database?> get() async {
+  static Future<Database> get() async {
     if (_db == null) {
-      var path = join(await getDatabasesPath(), 'bancofinancas');
+      var path = join(await getDatabasesPath(), 'bancofinancas3');
 
       _db = await openDatabase(
         path,
@@ -18,6 +18,6 @@ class Connection {
         },
       );
     }
-    return _db;
+    return _db!;
   }
 }

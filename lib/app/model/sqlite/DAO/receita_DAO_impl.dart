@@ -1,11 +1,17 @@
 import 'package:flutter_application_1/app/model/entidades/receita.dart';
-//import 'package:app/app/domain/receita_DAO.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../dao/receita_DAO.dart';
 import '../connection.dart';
 
 class ReceitaDAOImpl implements ReceitaDAO {
-  Database? _db;
+  late Database _db;
+
+  Future<List<Map<String, Object?>>> list() async {
+    List<Map<String, Object?>> tarefas =
+        await _db.rawQuery('SELECT * FROM receita');
+    return tarefas;
+  }
 
   @override
   Future<List<Receita>> find() async {
@@ -15,9 +21,8 @@ class ReceitaDAOImpl implements ReceitaDAO {
       var linha = resultado[i];
       return Receita(
           id: linha['id'],
-          descricao: linha['descricao'],
-          valor: linha['valor'],
-          data: linha['data']);
+          descricao: linha['descricao'].toString(),
+          valor: linha['valor'].toString());
     });
 
     return listareceita;
@@ -35,12 +40,11 @@ class ReceitaDAOImpl implements ReceitaDAO {
     _db = await Connection.get();
     var sql;
     if (receita.id == null) {
-      sql = 'INSERT INTO receita(descricao, valor, data) VALUES(?,?,?)';
-      _db.rawInsert(sql, [receita.descricao, receita.valor, receita.data]);
+      sql = 'INSERT INTO receita(descricao, valor) VALUES(?,?)';
+      _db.rawInsert(sql, [receita.descricao, receita.valor]);
     } else {
-      sql =
-          'UPDATE receita SET descricao = ?, valor = ?, data = ? WHERE id = ?)';
-      _db.rawUpdate(sql, [receita.descricao, receita.valor, receita.data]);
+      sql = 'UPDATE receita SET descricao = ?, valor = ? WHERE id = ?)';
+      _db.rawUpdate(sql, [receita.descricao, receita.valor]);
     }
   }
 }

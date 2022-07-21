@@ -2,6 +2,7 @@ import 'package:flutter_application_1/app/model/entidades/despesa.dart';
 //import 'package:app/app/domain/despesa_DAO.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../dao/despesa_DAO.dart';
 import '../connection.dart';
 
 class DespesaDAOImpl implements DespesaDAO {
@@ -10,14 +11,13 @@ class DespesaDAOImpl implements DespesaDAO {
   @override
   Future<List<Despesa>> find() async {
     _db = await Connection.get();
-    List<Map<String, dynamic>> resultado = await _db.query('despesa');
+    List<Map<String, dynamic>> resultado = await _db!.query('despesa');
     List<Despesa> listadespesa = List.generate(resultado.length, (i) {
       var linha = resultado[i];
       return Despesa(
           id: linha['id'],
-          descricao: linha['descricao'],
-          valor: linha['valor'],
-          data: linha['data']);
+          descricao: linha['descricao'].toString(),
+          valor: linha['valor'].toString());
     });
 
     return listadespesa;
@@ -27,7 +27,7 @@ class DespesaDAOImpl implements DespesaDAO {
   remove(int id) async {
     _db = await Connection.get();
     var sql = 'DELETE FROM despesa WHERE id = ?';
-    _db.rawDelete(sql, [id]);
+    _db!.rawDelete(sql, [id]);
   }
 
   @override
@@ -35,12 +35,11 @@ class DespesaDAOImpl implements DespesaDAO {
     _db = await Connection.get();
     var sql;
     if (despesa.id == null) {
-      sql = 'INSERT INTO despesa(descricao, valor, data) VALUES(?,?,?)';
-      _db.rawInsert(sql, [despesa.descricao, despesa.valor, despesa.data]);
+      sql = 'INSERT INTO despesa(descricao, valor, data) VALUES(?,?)';
+      _db!.rawInsert(sql, [despesa.descricao, despesa.valor]);
     } else {
-      sql =
-          'UPDATE despesa SET descricao = ?, valor = ?, data = ? WHERE id = ?)';
-      _db.rawUpdate(sql, [despesa.descricao, despesa.valor, despesa.data]);
+      sql = 'UPDATE despesa SET descricao = ?, valor = ? WHERE id = ?)';
+      _db!.rawUpdate(sql, [despesa.descricao, despesa.valor]);
     }
   }
 }
