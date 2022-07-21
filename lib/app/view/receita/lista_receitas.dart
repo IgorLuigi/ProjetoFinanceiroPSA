@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../controller/receita_controller.dart';
 import '../../model/entidades/receita.dart';
 
-import 'lista_receitas_back.dart';
-
 class ListaReceitas extends StatelessWidget {
-  final _back = ListaReceitaBack();
+  ReceitaController receitaController = ReceitaController();
 
-  Future<List<Receita>> buscarReceitas(BuildContext context) {
-    Future<List<Receita>> receitas = _back.list(context);
+  //Buscar
+  Future<List<Receita>> buscarReceitas(BuildContext context) async {
+    Future<List<Receita>> receitas = receitaController.buscar();
     return receitas;
   }
 
