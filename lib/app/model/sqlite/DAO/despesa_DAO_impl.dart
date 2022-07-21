@@ -6,12 +6,18 @@ import '../../dao/despesa_DAO.dart';
 import '../connection.dart';
 
 class DespesaDAOImpl implements DespesaDAO {
-  Database? _db;
+  late Database _db;
+
+  Future<List<Map<String, Object?>>> list() async {
+    List<Map<String, Object?>> tarefas =
+        await _db.rawQuery('SELECT * FROM despesa');
+    return tarefas;
+  }
 
   @override
   Future<List<Despesa>> find() async {
     _db = await Connection.get();
-    List<Map<String, dynamic>> resultado = await _db!.query('despesa');
+    List<Map<String, dynamic>> resultado = await _db.query('despesa');
     List<Despesa> listadespesa = List.generate(resultado.length, (i) {
       var linha = resultado[i];
       return Despesa(
@@ -27,7 +33,7 @@ class DespesaDAOImpl implements DespesaDAO {
   remove(int id) async {
     _db = await Connection.get();
     var sql = 'DELETE FROM despesa WHERE id = ?';
-    _db!.rawDelete(sql, [id]);
+    _db.rawDelete(sql, [id]);
   }
 
   @override
@@ -35,11 +41,11 @@ class DespesaDAOImpl implements DespesaDAO {
     _db = await Connection.get();
     var sql;
     if (despesa.id == null) {
-      sql = 'INSERT INTO despesa(descricao, valor, data) VALUES(?,?)';
-      _db!.rawInsert(sql, [despesa.descricao, despesa.valor]);
+      sql = 'INSERT INTO despesa(descricao, valor) VALUES(?,?)';
+      _db.rawInsert(sql, [despesa.descricao, despesa.valor]);
     } else {
       sql = 'UPDATE despesa SET descricao = ?, valor = ? WHERE id = ?)';
-      _db!.rawUpdate(sql, [despesa.descricao, despesa.valor]);
+      _db.rawUpdate(sql, [despesa.descricao, despesa.valor]);
     }
   }
 }
